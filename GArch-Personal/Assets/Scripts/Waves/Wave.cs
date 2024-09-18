@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +22,7 @@ public class Wave
 
         // add random enemy infos to list
 
+
         return enemyInfos;
     }
 
@@ -31,6 +31,11 @@ public class Wave
         IWaveInfo newWaveInfo = new WaveInfoBase();
 
         //determine what decorators to put on the wave
+        newWaveInfo = new SpawnIntervalWaveDecorator(newWaveInfo, Random.Range(intervalRange.x, intervalRange.y));
+
+        newWaveInfo = new SquareShapeWaveDecorator(newWaveInfo);
+
+        newWaveInfo = new StarShapeWaveDecorator(newWaveInfo);
 
         return newWaveInfo;
     }

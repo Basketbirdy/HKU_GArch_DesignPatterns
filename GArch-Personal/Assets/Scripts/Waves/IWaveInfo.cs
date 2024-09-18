@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IWaveInfo
 {
-    List<ShapeInfo> GetShapeInfo();
     float GetSpawnInterval();
+    List<ShapeInfo> GetShapeInfo();
 
 }

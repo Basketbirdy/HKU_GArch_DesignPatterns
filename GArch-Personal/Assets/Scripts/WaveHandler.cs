@@ -1,13 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.VersionControl.Asset;
 
 public class WaveHandler : MonoBehaviour
 {
     [SerializeField] IWaveInfo[] possibleWaveInfos;
 
     [SerializeField] Wave currentWave;
+
+    private int waveCount = 0;
+
+    private void OnEnable()
+    {
+        EventSystem.AddListener(EventType.WAVE_GENERATE, CreateNewWave);
+    }
+
+    private void OnDisable()
+    {
+        EventSystem.RemoveListener(EventType.WAVE_GENERATE, CreateNewWave);
+    }
 
     private void Start()
     {
@@ -20,6 +32,15 @@ public class WaveHandler : MonoBehaviour
     {
         Wave newWave = new Wave();
         return newWave;
+    }
+
+    private void CreateNewWave()
+    {
+        // generate wave
+        currentWave = GenerateWave();
+
+        // get the wave to spawn through enemy handler
+        EventSystem.InvokeEvent(EventType.WAVE_START);
     }
 
     private void DebugWaveInfo(Wave wave)
