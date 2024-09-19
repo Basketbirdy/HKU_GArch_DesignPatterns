@@ -11,10 +11,10 @@ public class StarShapeWaveDecorator : IWaveInfo
         this.waveInfo = waveInfo;
     }
 
-    public List<ShapeInfo> GetShapeInfo()
+    public List<GroupInfo> GetGroupInfo()
     {
-        List<ShapeInfo> decoratedShapes = waveInfo.GetShapeInfo();
-        decoratedShapes.Add(new ShapeInfo(Shape.STAR));
+        List<GroupInfo> decoratedShapes = waveInfo.GetGroupInfo();
+        decoratedShapes.Add(new GroupInfo(Shape.STAR));
         return decoratedShapes;
     }
 

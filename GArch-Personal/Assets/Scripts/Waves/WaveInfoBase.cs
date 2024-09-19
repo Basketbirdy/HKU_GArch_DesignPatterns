@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class WaveInfoBase : IWaveInfo
 {
-    public List<ShapeInfo> GetShapeInfo()
+    public List<GroupInfo> GetGroupInfo()
     {
-        List<ShapeInfo> shapes = new List<ShapeInfo>();
-        
+        List<GroupInfo> shapes = new List<GroupInfo>();
+
+        // make sure the wave has at least one group
+        shapes.Add(new GroupInfo(Shape.DOT));
+
         return shapes;
     }
 

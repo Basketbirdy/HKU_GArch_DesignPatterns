@@ -13,19 +13,14 @@ public class WaveHandler : MonoBehaviour
 
     private void OnEnable()
     {
+        EventSystem<int>.AddListener(EventType.WAVE_END, OnWaveEnd);
         EventSystem<int>.AddListener(EventType.WAVE_GENERATE, CreateNewWave);
     }
 
     private void OnDisable()
     {
+        EventSystem<int>.RemoveListener(EventType.WAVE_END, OnWaveEnd);
         EventSystem<int>.RemoveListener(EventType.WAVE_GENERATE, CreateNewWave);
-    }
-
-    private void Start()
-    {
-        currentWave = GenerateWave();
-
-        DebugWaveInfo(currentWave);
     }
 
     private Wave GenerateWave()
@@ -40,20 +35,17 @@ public class WaveHandler : MonoBehaviour
         currentWave = GenerateWave();
 
         // get the wave to spawn through enemy handler
-        EventSystem<int>.InvokeEvent(EventType.WAVE_START, 0);
+        EventSystem<Wave>.InvokeEvent(EventType.WAVE_START, currentWave);
     }
 
-    private void DebugWaveInfo(Wave wave)
+    // trigger 
+    private void OnWaveEnd(int arg)
     {
-        Debug.Log("[Wave] SpawnInterval: ");
-        Debug.Log("[Wave] " + wave.waveInfo.GetSpawnInterval().ToString());
+        Debug.Log("[Wavehandler] Wave ended (entering grace period)");
+        // start timer for grace period between waves
 
-        List<ShapeInfo> shapes = wave.waveInfo.GetShapeInfo();
-        Debug.Log("[Wave] Spawn Shapes: ");
-        if (shapes.Count == 0) { Debug.Log("[Wave] -"); }
-        foreach (ShapeInfo shapeInfo in shapes)
-        {
-            Debug.Log("[Wave] Shape: " + shapeInfo.shape.ToString() + "; Direction: " + shapeInfo.direction.ToString());
-        }
+        // trigger new wave
+        Debug.Log("[Wavehandler] Grace period over generating a new wave");
+        EventSystem<int>.InvokeEvent(EventType.WAVE_GENERATE, 0);
     }
 }

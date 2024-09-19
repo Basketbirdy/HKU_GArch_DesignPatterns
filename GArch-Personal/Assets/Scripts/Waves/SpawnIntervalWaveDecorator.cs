@@ -6,16 +6,17 @@ public class SpawnIntervalWaveDecorator : IWaveInfo
 {
     IWaveInfo waveInfo;
     float change;
+    Vector2 intervalRange = new Vector2(-0.4f, 0.4f);
 
-    public SpawnIntervalWaveDecorator(IWaveInfo waveInfo, float change)
+    public SpawnIntervalWaveDecorator(IWaveInfo waveInfo)
     {
         this.waveInfo = waveInfo;
-        this.change = change;
+        change = Random.Range(intervalRange.x, intervalRange.y);
     }
 
-    public List<ShapeInfo> GetShapeInfo()
+    public List<GroupInfo> GetGroupInfo()
     {
-        return waveInfo.GetShapeInfo();
+        return waveInfo.GetGroupInfo();
     }
 
     public float GetSpawnInterval()

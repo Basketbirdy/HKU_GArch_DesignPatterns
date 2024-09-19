@@ -11,10 +11,10 @@ public class SquareShapeWaveDecorator : IWaveInfo
         this.waveInfo = waveInfo;
     }
 
-    public List<ShapeInfo> GetShapeInfo()
+    public List<GroupInfo> GetGroupInfo()
     {
-        List<ShapeInfo> decoratedShapes = waveInfo.GetShapeInfo();
-        decoratedShapes.Add(new ShapeInfo(Shape.SQUARE));
+        List<GroupInfo> decoratedShapes = waveInfo.GetGroupInfo();
+        decoratedShapes.Add(new GroupInfo(Shape.SQUARE));
         return decoratedShapes;
     }
 

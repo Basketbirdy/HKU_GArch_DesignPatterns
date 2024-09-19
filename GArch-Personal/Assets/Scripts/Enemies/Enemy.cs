@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IEnemy
 {
-    EnemyBase enemyDefinition;
+    private EnemyBase enemyDefinition;
     
-    public void EnemySetup(EnemyBase enemyDefinition)
+    public void Setup(EnemyBase enemyDefinition)
     {
         this.enemyDefinition = enemyDefinition;
+        Debug.Log("[Enemy]: " +  this.enemyDefinition);
     }
 }
