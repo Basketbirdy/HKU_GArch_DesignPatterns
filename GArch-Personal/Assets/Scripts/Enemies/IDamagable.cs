@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBase
+public interface IDamagable
 {
-    
+    float health { get; }
+    void Die();
 }

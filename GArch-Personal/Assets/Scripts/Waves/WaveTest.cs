@@ -16,7 +16,9 @@ public class WaveTest : MonoBehaviour
 
         DebugWaveInfo();
 
-        waveInfo = new SquareShapeWaveDecorator(waveInfo);
+        waveInfo = new ShapeWaveDecorator(waveInfo, new ShapeInfo(Shape.SQUARE));
+
+        waveInfo = new ShapeWaveDecorator(waveInfo, new ShapeInfo(Shape.STAR));
 
         DebugWaveInfo();
 

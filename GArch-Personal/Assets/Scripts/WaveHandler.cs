@@ -13,12 +13,12 @@ public class WaveHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        EventSystem.AddListener(EventType.WAVE_GENERATE, CreateNewWave);
+        EventSystem<int>.AddListener(EventType.WAVE_GENERATE, CreateNewWave);
     }
 
     private void OnDisable()
     {
-        EventSystem.RemoveListener(EventType.WAVE_GENERATE, CreateNewWave);
+        EventSystem<int>.RemoveListener(EventType.WAVE_GENERATE, CreateNewWave);
     }
 
     private void Start()
@@ -34,13 +34,13 @@ public class WaveHandler : MonoBehaviour
         return newWave;
     }
 
-    private void CreateNewWave()
+    private void CreateNewWave(int nullable)
     {
         // generate wave
         currentWave = GenerateWave();
 
         // get the wave to spawn through enemy handler
-        EventSystem.InvokeEvent(EventType.WAVE_START);
+        EventSystem<int>.InvokeEvent(EventType.WAVE_START, 0);
     }
 
     private void DebugWaveInfo(Wave wave)

@@ -27,15 +27,14 @@ public class EnemyHandler : MonoBehaviour
 
     private void SpawnWave(Wave wave)
     {
-        float intervalMultiplier = wave.waveInfo.GetSpawnInterval();
+        float interval = 1 * wave.waveInfo.GetSpawnInterval();
 
-        foreach(EnemyInfo enemy in wave.enemies) 
-        {
-            GameObject enemyObj = enemyPool.AcquireObject();
+        //foreach(EnemyBase enemy in wave.enemies) 
+        //{
+        //    GameObject enemyObj = enemyPool.AcquireObject();
 
-
-            InitializeEnemy(enemyObj, Vector3.zero);
-        }
+        //    InitializeEnemy(enemyObj, Vector3.zero, Quaternion.identity);
+        //}
     }
 
     private void InitializeEnemy(GameObject enemy, Vector3 position, Quaternion rotation)
