@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface IDamagable
 {
-    float Health { get; }
-    void Die();
+    public float Health { get; }
+
+    public void Die();
 }

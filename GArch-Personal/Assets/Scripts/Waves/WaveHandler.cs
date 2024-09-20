@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class WaveHandler : MonoBehaviour
 {
-    [SerializeField] private IWaveInfo[] possibleWaveInfos;
-
     [SerializeField] private Wave currentWave;
 
     private int waveCount = 0;
