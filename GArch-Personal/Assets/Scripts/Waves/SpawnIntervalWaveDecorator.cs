@@ -8,9 +8,9 @@ public class SpawnIntervalWaveDecorator : IWaveInfo
     float change;
     Vector2 intervalRange = new Vector2(-0.4f, 0.4f);
 
-    public SpawnIntervalWaveDecorator(IWaveInfo waveInfo)
+    public SpawnIntervalWaveDecorator(IWaveInfo _waveInfo)
     {
-        this.waveInfo = waveInfo;
+        waveInfo = _waveInfo;
         change = Random.Range(intervalRange.x, intervalRange.y);
     }
 

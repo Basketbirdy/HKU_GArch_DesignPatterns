@@ -26,10 +26,10 @@ public class GroupInfo
     public Direction direction;
     public EnemyBase enemyType;
 
-    public GroupInfo(Shape shape)
+    public GroupInfo(Shape _shape)
     {
-        this.shape = shape;
-        this.direction = GetDirection();
+        shape = _shape;
+        direction = GetDirection();
         enemyType = GetEnemyType();
     }
 

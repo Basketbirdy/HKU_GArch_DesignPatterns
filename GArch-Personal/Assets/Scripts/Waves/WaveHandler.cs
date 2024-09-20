@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class WaveHandler : MonoBehaviour
 {
-    [SerializeField] IWaveInfo[] possibleWaveInfos;
+    [SerializeField] private IWaveInfo[] possibleWaveInfos;
 
-    [SerializeField] Wave currentWave;
+    [SerializeField] private Wave currentWave;
 
     private int waveCount = 0;
 
@@ -29,7 +29,7 @@ public class WaveHandler : MonoBehaviour
         return newWave;
     }
 
-    private void CreateNewWave(int nullable)
+    private void CreateNewWave(int _nullable)
     {
         // generate wave
         currentWave = GenerateWave();
@@ -39,7 +39,7 @@ public class WaveHandler : MonoBehaviour
     }
 
     // trigger 
-    private void OnWaveEnd(int arg)
+    private void OnWaveEnd(int _arg)
     {
         Debug.Log("[Wavehandler] Wave ended (entering grace period)");
         // start timer for grace period between waves

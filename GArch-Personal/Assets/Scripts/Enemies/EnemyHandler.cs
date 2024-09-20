@@ -6,12 +6,13 @@ using UnityEngine;
 
 public class EnemyHandler : MonoBehaviour
 {
-    [SerializeField] private SpawnPoint[] spawnPoints;
     public static Type[] possibleEnemies;
 
+    [SerializeField] private SpawnPoint[] spawnPoints;
     [SerializeField] private GameObject enemyPrefab;
-    private GameObjectPool enemyPool;
-    private int enemyCount = 0;
+
+    private GameObjectPool enemyPool;   
+    private int enemyCount = 0;         // keep track of the amount of enemies active
 
     private void OnEnable()
     {
@@ -21,11 +22,6 @@ public class EnemyHandler : MonoBehaviour
     private void OnDisable()
     {
         EventSystem<Wave>.RemoveListener(EventType.WAVE_START, SpawnWave);
-    }
-
-    private void Awake()
-    {
-        
     }
 
     private void Start()
@@ -47,22 +43,16 @@ public class EnemyHandler : MonoBehaviour
         {
             EventSystem<int>.InvokeEvent(EventType.WAVE_END, 0);
         }
-
-        // force end wave
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-
-        }
     }
 
-    private void SpawnWave(Wave wave)
+    private void SpawnWave(Wave _wave)
     {
-        Debug.Log("[EnemyHandler] Received WAVE_START event with:" + wave);
-        DebugWaveInfo(wave);
+        Debug.Log("[EnemyHandler] Received WAVE_START event with:" + _wave);
+        DebugWaveInfo(_wave);
 
-        float interval = 1 * wave.waveInfo.GetSpawnInterval();
+        float interval = 1 * _wave.waveInfo.GetSpawnInterval();
 
-        foreach(GroupInfo group in wave.waveInfo.GetGroupInfo())
+        foreach(GroupInfo group in _wave.waveInfo.GetGroupInfo())
         {
             // log all the group info
             Debug.Log("[EnemyHandler] Spawned new group");
@@ -88,17 +78,19 @@ public class EnemyHandler : MonoBehaviour
         }
     }
 
-    private void InitializeEnemy(GameObject enemy, GroupInfo groupInfo, Vector3 position, Quaternion rotation)
+    private void InitializeEnemy(GameObject _enemy, GroupInfo _groupInfo, Vector3 _position, Quaternion _rotation)
     {
+        if(_enemy == null) { return; }
+
         // set enemy to the correct enemy type
-        enemy.GetComponent<IEnemy>().Setup(groupInfo.enemyType);
+        _enemy.GetComponent<IEnemy>().Setup(_groupInfo.enemyType);
 
         // reset enemy
-        enemy.transform.position = position;
-        enemy.transform.rotation = rotation;
+        _enemy.transform.position = _position;
+        _enemy.transform.rotation = _rotation;
 
         // enable enemy
-        enemy.SetActive(true);
+        _enemy.SetActive(true);
     }
 
     private IEnumerator Interval(float interval)
@@ -106,12 +98,12 @@ public class EnemyHandler : MonoBehaviour
         yield return new WaitForSeconds(interval);
     }
 
-    private void DebugWaveInfo(Wave wave)
+    private void DebugWaveInfo(Wave _wave)
     {
         Debug.Log("[Wave] SpawnInterval: ");
-        Debug.Log("[Wave] " + wave.waveInfo.GetSpawnInterval().ToString());
+        Debug.Log("[Wave] " + _wave.waveInfo.GetSpawnInterval().ToString());
 
-        List<GroupInfo> shapes = wave.waveInfo.GetGroupInfo();
+        List<GroupInfo> shapes = _wave.waveInfo.GetGroupInfo();
         Debug.Log("[Wave] Spawn Shapes: ");
         if (shapes.Count == 0) { Debug.Log("[Wave] -"); }
         foreach (GroupInfo shapeInfo in shapes)

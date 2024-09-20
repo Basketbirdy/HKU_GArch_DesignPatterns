@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class EnemyArcher : EnemyBase, IAttacker, IDamagable, IMover
 {
-    public float damage { get; }
+    public float Damage { get; }
 
-    public float health { get; }
+    public float Health { get; }
 
-    public float speed {  get; }
+    public float Speed {  get; }
 
     public EnemyArcher()
     {
-        this.damage = 3;
-        this.health = 60;
-        this.speed = 4;
+        Damage = 3;
+        Health = 60;
+        Speed = 4;
     }   
 
     public void Attack()
@@ -35,14 +35,14 @@ public class EnemyArcher : EnemyBase, IAttacker, IDamagable, IMover
 
 public class EnemyTower : EnemyBase, IAttacker, IDamagable
 {
-    public float damage { get; }
+    public float Damage { get; }
 
-    public float health { get; }
+    public float Health { get; }
 
     public EnemyTower()
     {
-        this.damage = 7;
-        this.health = 120;
+        Damage = 7;
+        Health = 120;
     }
 
     public void Attack()
@@ -58,14 +58,14 @@ public class EnemyTower : EnemyBase, IAttacker, IDamagable
 
 public class EnemySteelRam : EnemyBase, IAttacker, IMover
 {
-    public float damage { get; }
+    public float Damage { get; }
 
-    public float speed { get; }
+    public float Speed { get; }
 
     public EnemySteelRam()
     {
-        damage = 10;
-        speed = 1;
+        Damage = 10;
+        Speed = 1;
     }
 
     public void Attack()

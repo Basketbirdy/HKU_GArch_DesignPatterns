@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IAttacker
 {
-    float damage { get; }
+    float Damage { get; }
     void Attack();
 }

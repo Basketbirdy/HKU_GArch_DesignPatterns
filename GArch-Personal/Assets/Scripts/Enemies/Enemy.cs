@@ -6,10 +6,20 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IEnemy
 {
     private EnemyBase enemyDefinition;
-    
-    public void Setup(EnemyBase enemyDefinition)
+
+    private void Start()
     {
-        this.enemyDefinition = enemyDefinition;
-        Debug.Log("[Enemy]: " +  this.enemyDefinition);
+        // enemy logic
+    }
+
+    private void Update()
+    {
+        // enemy logic
+    }
+
+    public void Setup(EnemyBase _enemyDefinition)
+    {
+        enemyDefinition = _enemyDefinition;
+        Debug.Log("[Enemy]: " +  enemyDefinition);
     }
 }

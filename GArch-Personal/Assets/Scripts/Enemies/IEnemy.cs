@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IEnemy
 {
-    public void Setup(EnemyBase enemyDefinition);
+    public void Setup(EnemyBase _enemyDefinition);
 }

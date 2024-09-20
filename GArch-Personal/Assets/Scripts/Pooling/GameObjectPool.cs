@@ -10,11 +10,11 @@ public class GameObjectPool
 
     private GameObject objectToPool;
 
-    public GameObjectPool(GameObject objectToPool, int maxCount)
+    public GameObjectPool(GameObject _objectToPool, int _maxCount)
     {
         // set variables
-        this.objectToPool = objectToPool;
-        this.maxCount = maxCount;
+        this.objectToPool = _objectToPool;
+        this.maxCount = _maxCount;
 
         // instantiate all the objects
         CreateObjects();
@@ -33,9 +33,9 @@ public class GameObjectPool
     public GameObject AcquireObject()
     {
         // check if there is something in the pool
-        if(pooledObjects.Count == 0) 
+        if(pooledObjects.Count <= 0) 
         {
-            Debug.LogWarning("[GameObjectPool] Pool for " + objectToPool.name + " returned null");
+            Debug.LogWarning("[GameObjectPool] Pool for " + objectToPool.name + " returned null, no " + objectToPool.name + " available. Release some first");
             return null;
         }
 
@@ -46,7 +46,7 @@ public class GameObjectPool
 
     public void ReleaseObject(GameObject obj) 
     {
-        // Check if given object fits in this pool
+        // If time allows - Check if given object fits in this pool
         // if yes,
         pooledObjects.Add(obj);
         // if no,

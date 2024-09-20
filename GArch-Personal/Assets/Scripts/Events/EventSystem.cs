@@ -13,41 +13,41 @@ public static class EventSystem<T>
 {
     public static Dictionary<EventType, Action<T>> events = new Dictionary<EventType, Action<T>>();
 
-    public static void AddListener(EventType eventType, Action<T> function)
+    public static void AddListener(EventType _eventType, Action<T> _function)
     {
-        if (!events.ContainsKey(eventType))
+        if (!events.ContainsKey(_eventType))
         {
-            events.Add(eventType, null);
+            events.Add(_eventType, null);
         }
 
-        events[eventType] += function;
+        events[_eventType] += _function;
     }
 
-    public static void RemoveListener(EventType eventType, Action<T> function)
+    public static void RemoveListener(EventType _eventType, Action<T> _function)
     {
-        if (events.ContainsKey(eventType) && events[eventType] != null)
+        if (events.ContainsKey(_eventType) && events[_eventType] != null)
         {
-            events[eventType] -= function;
+            events[_eventType] -= _function;
         }
-        else if (events[eventType] == null) { Debug.Log("[EventSystem] Action does not exist within EventType"); }
+        else if (events[_eventType] == null) { Debug.Log("[EventSystem] Action does not exist within EventType"); }
         else { Debug.Log("[EventSystem] EventType does not exist"); }
 
     }
 
-    public static void InvokeEvent(EventType eventType, T arg)
+    public static void InvokeEvent(EventType _eventType, T _arg)
     {
-        if (events.ContainsKey(eventType))
+        if (events.ContainsKey(_eventType))
         {
-            events[eventType]?.Invoke(arg);
+            events[_eventType]?.Invoke(_arg);
         }
         else { Debug.Log("[EventSystem] EventType does not exist"); }
     }
 
-    public static void DebugEvents(EventType eventType)
+    public static void DebugEvents(EventType _eventType)
     {
-        if (events.ContainsKey(eventType))
+        if (events.ContainsKey(_eventType))
         {
-            Debug.Log(events[eventType]);
+            Debug.Log(events[_eventType]);
         }
     }
 }

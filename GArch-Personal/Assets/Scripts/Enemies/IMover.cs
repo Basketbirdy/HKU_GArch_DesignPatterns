@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IMover
 {
-    float speed { get; }
+    float Speed { get; }
     void Move();
 }

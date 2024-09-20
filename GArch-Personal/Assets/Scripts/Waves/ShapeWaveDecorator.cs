@@ -10,13 +10,13 @@ public class ShapeWaveDecorator : IWaveInfo
     private IWaveInfo waveInfo;
     private Shape shape;
 
-
-    public ShapeWaveDecorator(IWaveInfo waveInfo)
+    public ShapeWaveDecorator(IWaveInfo _waveInfo)
     {
-        this.waveInfo = waveInfo;
+        waveInfo = _waveInfo;
 
         foreach(Shape shape in Enum.GetValues(typeof(Shape)))
         {
+            // generate random enum value from the shape enumeration
             if ((int)shape == UnityEngine.Random.Range(0, Enum.GetValues(typeof(Shape)).Cast<int>().Max()))
             {
                 this.shape = shape;
